@@ -28,5 +28,5 @@ export const PokemonCard = ({ pokemon }) => {
 };
 
 PokemonCard.propTypes = {
-    pokemon: PropTypes.node.isRequired,
+    pokemon: PropTypes.object.isRequired,
 };

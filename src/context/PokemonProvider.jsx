@@ -38,15 +38,16 @@ export const PokemonProvider = ({ children }) => {
 
     // Llamada a todos los pokemones de la API
     const getGlobalPokemons = async () => {
-        const baseUrl = "https://pokeapi.co/api/v2/";
-        const res = await fetch(`${baseUrl}pokemon?limit=100000&offset=0`);
+        const baseURL = "https://pokeapi.co/api/v2/";
+
+        const res = await fetch(`${baseURL}pokemon?limit=100000&offset=0`);
         const data = await res.json();
+
         const promises = data.results.map(async (pokemon) => {
             const res = await fetch(pokemon.url);
             const data = await res.json();
             return data;
         });
-
         const results = await Promise.all(promises);
 
         setGlobalPokemons(results);
@@ -79,7 +80,7 @@ export const PokemonProvider = ({ children }) => {
                 onResetForm,
                 allPokemons,
                 globalPokemons,
-                getPokemonById
+                getPokemonById,
             }}
         >
             {children}
