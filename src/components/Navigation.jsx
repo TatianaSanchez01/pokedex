@@ -1,15 +1,19 @@
 import { useContext } from "react";
-import { Outlet, Link } from "react-router-dom";
+import { Outlet, Link, useNavigate } from "react-router-dom";
 import { IoSearchOutline } from "react-icons/io5";
 import { PokemonContext } from "../context/PokemonContext";
 export const Navigation = () => {
-    const valueSearch = "";
+    const { valueSearch, onInputChange, onResetForm } =
+        useContext(PokemonContext);
+    const navigate = useNavigate();
+    const onSearchSubmit = (event) => {
+        event.preventDefault();
+        navigate("/search", { state: valueSearch });
 
-    const onSearchSubmit = () => {};
+        onResetForm();
+    };
 
-    const onInputChange = () => {};
-
-    const {number} = useContext(PokemonContext);
+    const { number } = useContext(PokemonContext);
     return (
         <>
             <header className="container">
