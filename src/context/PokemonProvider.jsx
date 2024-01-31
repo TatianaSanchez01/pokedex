@@ -66,11 +66,62 @@ export const PokemonProvider = ({ children }) => {
 
     useEffect(() => {
         getAllPokemons();
-    }, []);
+    }, [offset]);
 
     useEffect(() => {
         getGlobalPokemons();
     }, []);
+
+    const onClickLoadMore = () => {
+        setOffset(offset + 10);
+    };
+    const [typeSelected, setTypeSelected] = useState({
+        grass: false,
+        normal: false,
+        fighting: false,
+        flying: false,
+        poison: false,
+        ground: false,
+        rock: false,
+        bug: false,
+        ghost: false,
+        steel: false,
+        fire: false,
+        water: false,
+        electric: false,
+        psychic: false,
+        ice: false,
+        dragon: false,
+        dark: false,
+        fairy: false,
+        unknow: false,
+        shadow: false,
+    });
+    const [filteredPokemons, setFilteredPokemons] = useState([]);
+
+    const handleCheckbox = (event) => {
+        setTypeSelected({
+            ...typeSelected,
+            [event.target.name]: event.target.checked,
+        });
+
+        if (event.target.checked) {
+            const filteredResults = globalPokemons.filter((pokemon) =>
+                pokemon.types
+                    .map((type) => type.type.name)
+                    .includes(event.target.name)
+            );
+            setFilteredPokemons([...filteredPokemons, ...filteredResults]);
+        } else {
+            const filteredResults = filteredPokemons.filter(
+                (pokemon) =>
+                    !pokemon.types
+                        .map((type) => type.type.name)
+                        .includes(event.target.name)
+            );
+            setFilteredPokemons([...filteredResults]);
+        }
+    };
 
     return (
         <PokemonContext.Provider
@@ -81,6 +132,16 @@ export const PokemonProvider = ({ children }) => {
                 allPokemons,
                 globalPokemons,
                 getPokemonById,
+                onClickLoadMore,
+                //Loader
+                loading,
+                setLoading,
+                //btn Filter
+                active,
+                setActive,
+                //Filter
+                handleCheckbox,
+                filteredPokemons,
             }}
         >
             {children}

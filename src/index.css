@@ -106,14 +106,14 @@ header form {
 
 /* Btn Filter */
 .container-filter {
-    display: flex;
+    width: 100%;
 }
 
 .icon-filter {
     display: flex;
     align-items: center;
+    justify-content: end;
     gap: 15px;
-
     margin-bottom: 20px;
     cursor: pointer;
 }
@@ -264,8 +264,9 @@ header form {
     color: #555;
     background-color: #f2f2f2;
     height: 100%;
-    padding-top: 140px;
+    padding-top: 60px;
     transition: all 0.3s linear;
+    overflow-y: scroll;
 }
 
 .container-filters.active {

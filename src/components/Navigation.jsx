@@ -13,7 +13,6 @@ export const Navigation = () => {
         onResetForm();
     };
 
-    const { number } = useContext(PokemonContext);
     return (
         <>
             <header className="container">
