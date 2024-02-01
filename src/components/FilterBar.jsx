@@ -2,9 +2,21 @@ import { useContext } from "react";
 import { PokemonContext } from "../context/PokemonContext";
 
 export const FilterBar = () => {
-    const { active, handleCheckbox } = useContext(PokemonContext);
+    const { active, handleCheckbox, sortOrder, setSortOrder } =
+        useContext(PokemonContext);
     return (
         <div className={`container-filters ${active ? "active" : ""}`}>
+            <div className="filter-by-id">
+                <label htmlFor="">Ordenar por: <span className="filter-type">Número</span></label>
+                <select
+                    value={sortOrder}
+                    onChange={(e) => setSortOrder(e.target.value)}
+                    className="filter-selection"
+                >
+                    <option value="asc">Ascendente</option>
+                    <option value="desc">Descendente</option>
+                </select>
+            </div>
             <div className="filter-by-type">
                 <span>Tipo</span>
                 <div className="group-type">

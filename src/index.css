@@ -253,9 +253,6 @@ header form {
 
 /* Container Filters */
 .container-filters {
-    display: flex;
-    justify-content: center;
-
     position: fixed;
     top: 0;
     left: -300px;
@@ -264,13 +261,31 @@ header form {
     color: #555;
     background-color: #f2f2f2;
     height: 100%;
-    padding-top: 60px;
+    padding: 60px 40px;
     transition: all 0.3s linear;
     overflow-y: scroll;
 }
 
 .container-filters.active {
     left: 0;
+}
+
+.filter-by-id {
+    display: flex;
+    flex-direction: column;
+
+    gap: 5px;
+    margin-bottom: 20px;
+}
+
+.filter-by-id .filter-type {
+    font-weight: 600;
+    color: #000;
+}
+
+.filter-by-id .filter-selection {
+    padding: 6px;
+    border-radius: 10px;
 }
 
 .filter-by-type {
@@ -289,7 +304,7 @@ header form {
     display: flex;
     gap: 10px;
 
-    margin-left: 15px;
+    margin-left: 35px;
 }
 
 .group-type label {
@@ -333,7 +348,7 @@ Styles of Pokemon Single Page
     order: 2;
     flex: 1;
     padding: 25px 25px 25px 0;
-    height: 400px;
+    height: 100%;
 }
 
 .container-img-pokemon img {
@@ -357,7 +372,7 @@ Styles of Pokemon Single Page
 .info-pokemon {
     display: flex;
     justify-content: space-between;
-
+    color: #006d77;
     margin-top: 20px;
 }
 
@@ -445,4 +460,187 @@ Styles of Pokemon Single Page
 .btn-load-more:hover {
     background-color: var(--color-primary-hover);
     color: #000;
+}
+
+/* Media Queries para dispositivos específicos */
+
+/* Vista de Mobile 480px */
+@media only screen and (max-width: 480px) {
+    header {
+        flex-direction: column;
+        padding: 20px 0;
+    }
+
+    .logo img {
+        width: 120px;
+    }
+
+    .container {
+        padding: 30px;
+    }
+
+    header form {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .form-group {
+        margin-top: 15px;
+        width: 100%;
+    }
+
+    .form-group input {
+        font-size: 9px;
+    }
+
+    .btn-search {
+        width: 100%;
+        padding: 12px;
+        font-size: 14px;
+    }
+
+    .container-filter {
+        padding: 20px;
+    }
+
+    .container-filters {
+        left: -100%;
+        width: 100%;
+        padding: 20px;
+    }
+
+    .card-list-pokemon {
+        grid-template-columns: repeat(1, 2fr);
+        margin: 0px 20px;
+    }
+
+    .number-pokemon {
+        font-size: 100px;
+    }
+
+    .container-img-pokemon {
+        order: 1;
+    }
+
+    .container-info-pokemon h1 {
+        text-align: left;
+        font-size: 40px;
+    }
+
+    .container-stats {
+        flex-direction: column;
+        margin-top: 50px;
+        width: 100%;
+        gap: 50px;
+    }
+}
+
+/* Vista de Tablet 768px */
+@media only screen and (min-width: 480px) and (max-width: 1024px) {
+    header {
+        flex-direction: column;
+        padding: 20px 0;
+    }
+
+    header form {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .container {
+        padding: 0px 50px;
+    }
+
+    .logo img {
+        width: 130px;
+    }
+
+    .form-group {
+        margin-top: 15px;
+        width: 100%;
+    }
+
+    .form-group input {
+        font-size: 9px;
+    }
+
+    .card-list-pokemon {
+        display: grid;
+
+        grid-template-columns: repeat(2, 2fr);
+        gap: 30px;
+        margin: 0px 50px;
+    }
+
+    .icon-filter {
+        align-items: center;
+        justify-content: end;
+        margin: 10px 0;
+    }
+
+    .header-main-pokemon {
+        margin-top: 50px;
+    }
+
+    .number-pokemon {
+        font-size: 100px;
+    }
+
+    .container-info-pokemon h1 {
+        text-align: left;
+        font-size: 40px;
+    }
+
+    .container-stats {
+        flex-direction: row;
+        margin-top: 50px;
+        width: 100%;
+        gap: 50px;
+    }
+}
+
+@media only screen and (min-width: 1024px) and (max-width: 1400px) {
+    header {
+        flex-direction: column;
+        padding: 50px 0;
+    }
+
+    header form {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .card-list-pokemon {
+        display: grid;
+
+        grid-template-columns: repeat(3, 2fr);
+        gap: 30px;
+        margin: 0px 50px;
+    }
+
+    .icon-filter {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+        margin-bottom: 30px;
+        margin-right: 50px;
+        cursor: pointer;
+    }
+
+    .container-filters {
+        position: fixed;
+        top: 0;
+        left: -300px;
+        width: 300px;
+
+        color: #555;
+        background-color: #f2f2f2;
+        height: 100%;
+        padding: 60px 40px;
+        transition: all 0.3s linear;
+        overflow-y: scroll;
+    }
+
+    
 }

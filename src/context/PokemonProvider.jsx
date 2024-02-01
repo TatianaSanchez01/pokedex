@@ -17,6 +17,9 @@ export const PokemonProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
     const [active, setActive] = useState(false);
 
+    const [sortBy, setSortBy] = useState("id"); // Default sort by id
+    const [sortOrder, setSortOrder] = useState("asc"); // Default sort order is ascending
+
     // Llamada a los 10 primeros pokemones
     const getAllPokemons = async (limit = 10) => {
         const baseUrl = "https://pokeapi.co/api/v2/";
@@ -32,7 +35,20 @@ export const PokemonProvider = ({ children }) => {
 
         const results = await Promise.all(promises);
 
-        setAllPokemons([...allPokemons, ...results]);
+        // Sort the results based on sortBy and sortOrder
+        const sortedResults = results.sort((a, b) => {
+            const order = sortOrder === "asc" ? 1 : -1;
+
+            if (sortBy === "id") {
+                return order * (a.id - b.id);
+            } else if (sortBy === "name") {
+                return order * a.name.localeCompare(b.name);
+            } else {
+                return 0;
+            }
+        });
+
+        setAllPokemons([...sortedResults]);
         setLoading(false);
     };
 
@@ -66,15 +82,12 @@ export const PokemonProvider = ({ children }) => {
 
     useEffect(() => {
         getAllPokemons();
-    }, [offset]);
+    }, [sortOrder]);
 
     useEffect(() => {
         getGlobalPokemons();
     }, []);
 
-    const onClickLoadMore = () => {
-        setOffset(offset + 10);
-    };
     const [typeSelected, setTypeSelected] = useState({
         grass: false,
         normal: false,
@@ -132,7 +145,6 @@ export const PokemonProvider = ({ children }) => {
                 allPokemons,
                 globalPokemons,
                 getPokemonById,
-                onClickLoadMore,
                 //Loader
                 loading,
                 setLoading,
@@ -142,6 +154,11 @@ export const PokemonProvider = ({ children }) => {
                 //Filter
                 handleCheckbox,
                 filteredPokemons,
+                // Order by number
+                sortBy,
+                setSortBy,
+                sortOrder,
+                setSortOrder,
             }}
         >
             {children}
