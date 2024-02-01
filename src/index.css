@@ -437,29 +437,12 @@ Styles of Pokemon Single Page
     margin: 200px 0;
 }
 
-/* Btn Load More */
-
-.container-btn-load-more {
-    display: flex;
-    justify-content: center;
-
-    margin-bottom: 20px;
-    margin-top: 20px;
-}
-
-.btn-load-more {
-    border: none;
-    padding: 15px 40px;
-    font-family: inherit;
-    background-color: var(--color-primary);
-    color: #fff;
-    border-radius: 10px;
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: var(--color-primary);
     cursor: pointer;
-}
-
-.btn-load-more:hover {
-    background-color: var(--color-primary-hover);
-    color: #000;
 }
 
 /* Media Queries para dispositivos específicos */
@@ -629,18 +612,9 @@ Styles of Pokemon Single Page
     }
 
     .container-filters {
-        position: fixed;
-        top: 0;
         left: -300px;
         width: 300px;
 
-        color: #555;
-        background-color: #f2f2f2;
-        height: 100%;
         padding: 60px 40px;
-        transition: all 0.3s linear;
-        overflow-y: scroll;
     }
-
-    
 }

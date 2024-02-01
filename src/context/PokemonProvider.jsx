@@ -20,6 +20,10 @@ export const PokemonProvider = ({ children }) => {
     const [sortBy, setSortBy] = useState("id"); // Default sort by id
     const [sortOrder, setSortOrder] = useState("asc"); // Default sort order is ascending
 
+    const handleCloseFilter = () => {
+        setActive(!active);
+    };
+
     // Llamada a los 10 primeros pokemones
     const getAllPokemons = async (limit = 10) => {
         const baseUrl = "https://pokeapi.co/api/v2/";
@@ -159,6 +163,8 @@ export const PokemonProvider = ({ children }) => {
                 setSortBy,
                 sortOrder,
                 setSortOrder,
+                // New value for filter bar visibility
+                handleCloseFilter,
             }}
         >
             {children}

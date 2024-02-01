@@ -1,13 +1,26 @@
 import { useContext } from "react";
 import { PokemonContext } from "../context/PokemonContext";
-
+import { MdOutlineClose } from "react-icons/md";
 export const FilterBar = () => {
-    const { active, handleCheckbox, sortOrder, setSortOrder } =
-        useContext(PokemonContext);
+    const {
+        active,
+        handleCheckbox,
+        sortOrder,
+        setSortOrder,
+        handleCloseFilter
+    } = useContext(PokemonContext);
+
+
+
     return (
         <div className={`container-filters ${active ? "active" : ""}`}>
+            <button className="close-btn" onClick={handleCloseFilter}>
+                <MdOutlineClose />
+            </button>
             <div className="filter-by-id">
-                <label htmlFor="">Ordenar por: <span className="filter-type">Número</span></label>
+                <label htmlFor="">
+                    Ordenar por: <span className="filter-type">Número</span>
+                </label>
                 <select
                     value={sortOrder}
                     onChange={(e) => setSortOrder(e.target.value)}
